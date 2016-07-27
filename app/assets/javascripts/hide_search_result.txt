@@ -1,0 +1,15 @@
+$("#list_definitions").html("<%= escape_javascript(render("show")) %>");
+$(function(){
+  $("#search_form").submit(function(event){
+    event.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: $(this).attr('action'),
+      dataType: "json",
+      data: "#user_input"
+    });
+  });
+});
+
+jQuery($("#list_definitions").empty());
+jQuery("#list_definitions").html("<%= escape_javascript(render(:partial => 'create')) %>");

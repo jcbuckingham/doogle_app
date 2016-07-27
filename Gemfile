@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
 
-gem 'heroku_san'
 gem 'jquery-rails'
 gem 'nokogiri'
-gem 'pg'
+gem 'pg', group: :production
 gem 'rails'
 gem 'rails_12factor', group: :production
 gem 'selenium-webdriver', group: :test
@@ -16,7 +15,7 @@ gem 'rails-controller-testing'
 gem 'bootstrap-sass', '~> 3.3.5.1'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', group: :development
 # Use Puma as the app server
 # gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

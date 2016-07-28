@@ -21,7 +21,6 @@ class SearchResultController < ApplicationController
 
     unless db_result
       db_result = new_search_result(params_result.user_input)
-
     end
 
     @result = db_result
@@ -31,10 +30,8 @@ class SearchResultController < ApplicationController
       unless @definition_list.empty?
         format.html { redirect_to action: :index }
         format.js
-        puts "unless"
       else
         format.html { render 'show' }
-        puts "else"
       end
     end
 

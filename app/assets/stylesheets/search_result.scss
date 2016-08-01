@@ -4,9 +4,42 @@
 
 #ul-defs {
   visibility: hidden;
+  font-family: Sans-Serif;
 }
 
 #ul-defs > li {
   color: black;
+  font-size: 1.3em;
   visibility: visible;
+}
+
+
+span > .red_letter {
+  color: #db3236;
+  font-size: 4em;
+  font-family: Sans-Serif;
+}
+
+span > .blue_letter {
+  color: #4885ed;
+  font-size: 4em;
+  font-family: Sans-Serif;
+}
+
+span > .green_letter {
+  color: #3cba54;
+  font-size: 4em;
+  font-family: Sans-Serif;
+}
+
+span > .yellow_letter {
+  color: #f4c20d;
+  font-size: 4em;
+  font-family: Sans-Serif;
+}
+
+.doogle-title {
+  text-align: center;
+  font-size: 4em;
+  font-family: Sans-Serif;
 }

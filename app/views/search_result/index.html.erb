@@ -1,6 +1,13 @@
 <%= csrf_meta_tags %>
 <div class="container">
-  <h1>DOOGLE</h1>
+  <div class='doogle-title'>
+    <span class=“blue_letter” style="color:#4885ed;">D</span>
+    <span class=“red_letter” style="color:#db3236;">o</span>
+    <span class=“yellow_letter” style="color:#f4c20d;">o</span>
+    <span class=“blue_letter” style="color:#4885ed;">g</span>
+    <span class=“green_letter” style="color:#3cba54;">l</span>
+    <span class=“red_letter” style="color:#db3236;">e</span>
+  </div>
   <div id="form_search_result">
     <%= form_for :search_result, remote: true, format: "js", :url=>{controller: 'search_result', action: 'create', method: 'post'}, :class => "search_form" do |f| %>
 

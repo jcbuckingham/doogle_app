@@ -1,9 +1,0 @@
-<h3>"INDEX"</h3>
-<% if params[:search_result] %>
-    <p><%= params[:search_result][:user_input] %></p>
-    <ul>
-      <%= @definition_list.each do |definition| %>
-          <li><%= definition.content %></li>
-      <% end %>
-    </ul>
-<% end %>

@@ -18,28 +18,31 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'webmock/rspec'
+#require 'webmock/rspec'
 Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f }
 
 
 RSpec.configure do |config|
-  config.before(:all, type: :request) do
-    WebMock.allow_net_connect!
+  # config.before(:all, type: :request) do
+  #   WebMock.allow_net_connect!
+  # end
+
+  # config.mock_with :rspec do |c|
+  #   c.syntax = [:should, :expect]
+  # end
+  #
+  # config.after(:all, type: :request) do
+  #   selenium_requests = %r{/((__.+__)|(hub/session.*))$}
+  #   WebMock.disable_net_connect! :allow => selenium_requests
+  # end
+  # config.before(:each, :network => true) do
+  #   WebMock.disable!
+  # end
+
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app, :browser => :chrome)
   end
 
-  config.mock_with :rspec do |c|
-    c.syntax = [:should, :expect]
-  end
-
-  config.after(:all, type: :request) do
-    selenium_requests = %r{/((__.+__)|(hub/session.*))$}
-    WebMock.disable_net_connect! :allow => selenium_requests
-  end
-  config.before(:each, :network => true) do
-    WebMock.disable!
-  end
-
-  config.expose_current_running_example_as :example
   config.include Capybara::DSL
   config.include Rails.application.routes.url_helpers
   # rspec-expectations config goes here. You can use an alternate

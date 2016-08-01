@@ -5,23 +5,3 @@ class SearchResult < ApplicationRecord
 end
 
 
-=begin
-
-  def parse_result(doc)
-    dts = doc.xpath("//dt").map
-
-    dts.each do |node|
-      node.each do |child|
-        child = ""
-      end
-    end
-
-    #dt_nodeset.each do |node|
-    #  if /<vi>/.match(node)
-
-    return dts
-  end
-
-
-=end
-

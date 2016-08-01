@@ -2,7 +2,7 @@
 <div class="container">
   <h1>DOOGLE</h1>
   <div id="form_search_result">
-    <%= form_for :search_result, remote: true, :url=>{controller: 'search_result', action: 'create', method: 'post'}, :class => "search_form" do |f| %>
+    <%= form_for :search_result, remote: true, format: "js", :url=>{controller: 'search_result', action: 'create', method: 'post'}, :class => "search_form" do |f| %>
 
         <%= f.text_field :user_input, id: "user_input", class: "form-control" %>
         <%= f.button "Search", :id=> "search_button", class: "btn btn-primary" %>

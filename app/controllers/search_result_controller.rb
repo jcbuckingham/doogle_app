@@ -11,6 +11,16 @@ class SearchResultController < ApplicationController
     @definition_list = Definition.where(search_result: @result)
   end
 
+  def show
+    # begin
+    #   respond_to do |format|
+    #     format.js
+    #   end
+    # rescue
+    # end
+
+  end
+
 
   def create
 
@@ -27,16 +37,8 @@ class SearchResultController < ApplicationController
     @definition_list = Definition.where(search_result: @result)
 
     respond_to do |format|
-      unless @definition_list.empty?
-        format.html { redirect_to action: :index }
-        format.js
-      else
-        format.html { render 'show' }
-      end
+      format.js
     end
-
-    redirect_to action: :index
-
   end
 
   private
@@ -55,9 +57,8 @@ class SearchResultController < ApplicationController
 
   def new_search_result(new_word)
     new_result = SearchResult.create(user_input: new_word)
-    xml_doc = contact_api(new_word)
-    parse_result_into_definitions(xml_doc, new_result)
-    new_result
+    parse_result_into_definitions(contact_api(new_word), new_result)
+    return new_result
   end
 
   def contact_api(word)

@@ -3,51 +3,47 @@ ruby '2.3.1'
 
 gem 'jquery-rails'
 gem 'nokogiri'
-gem 'pg', group: :production
 gem 'rails'
-gem 'rails_12factor', group: :production
-gem 'selenium-webdriver', group: :test
 gem 'rspec'
 gem 'rspec-rails'
 gem 'activesupport', '5.0.0'
-gem 'shoulda-matchers', '2.8.0', group: :test
 gem 'rails-controller-testing'
+gem 'awesome_print'
 gem 'bootstrap-sass', '~> 3.3.5.1'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
-# Use Puma as the app server
-# gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5.x'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'capybara', '~> 2.7', '>= 2.7.1'
   gem 'launchy'
-  gem 'webmock'
+  #gem 'webmock'
+  gem 'pry-rails',   '~> 0.3.2'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '2.8.0'
+  gem 'chromedriver-helper'
+  gem 'database_cleaner'
+
 end
 
 group :development do
+  gem 'sqlite3'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'

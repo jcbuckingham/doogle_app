@@ -8,16 +8,9 @@ class SearchResultController < ApplicationController
   end
 
   def index
-    @definition_list = Definition.where(search_result: @result)
   end
 
   def show
-    # begin
-    #   respond_to do |format|
-    #     format.js
-    #   end
-    # rescue
-    # end
 
   end
 
@@ -65,11 +58,11 @@ class SearchResultController < ApplicationController
     api_url = "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/"
     api_key = "?key=64f621d1-a5ae-4337-8f71-02924c6ce747"
 
-    return Nokogiri::HTML(open(api_url + word + api_key))
+    return open(api_url + word + api_key)
   end
 
   def parse_result_into_definitions(doc, new_result)
-
+    doc = Nokogiri::XML(doc)
     doc.xpath('//sx', '//vi', '//un', '//dx').each do |tag|
       tag.remove
     end
@@ -77,14 +70,17 @@ class SearchResultController < ApplicationController
     dts = doc.xpath("//dt").map(&:text)
 
     dts.each do |node|
-      node.chomp
-      if node.chars.first == ":"
-        node[0] = ''
+      node.strip!
+      unless node.to_s == ":"
+        if node.chars.first == ":"
+          node[0] = ''
+        end
+        if node.chars.last == ":"
+          node[-1] = ''
+        end
+
+        new_result.definitions.create(content: node.to_s)
       end
-      if node.chars.last == ":"
-        node[-1] = ''
-      end
-      new_result.definitions.create(content: node.to_s)
     end
   end
 end

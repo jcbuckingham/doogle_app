@@ -34,7 +34,7 @@ group :development, :test do
   gem 'capybara', '~> 2.7', '>= 2.7.1'
   gem 'launchy'
   #gem 'webmock'
-  gem 'pry-rails',   '~> 0.3.2'
+  #gem 'pry-rails',   '~> 0.3.2'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '2.8.0'
   gem 'chromedriver-helper'

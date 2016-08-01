@@ -1,6 +1,4 @@
-<h3>"CREATE"</h3>
 <% if params[:search_result] %>
-    <p><%= params[:search_result][:user_input] %></p>
     <ul id='ul-defs'>
       <%= @definition_list.each do |definition| %>
           <li><%= definition.content %></li>

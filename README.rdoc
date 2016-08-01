@@ -1,7 +1,46 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#3cba54	Google Green Hex: #3cba54 RGB: 60, 186, 84
+#f4c20d	Google Yellow Hex: #f4c20d RGB: 244, 194, 13
+#db3236	Google Red Hex: #db3236 RGB: 219, 50, 54
+#4885ed	Google Blue Hex: #4885ed RGB: 72, 133, 237
+
+<link href='https://fonts.googleapis.com/css?family=Raleway:500,900,200' rel='stylesheet' type='text/css'>
+http://stackoverflow.com/questions/18508996/include-google-font-in-rails-app
+http://stackoverflow.com/questions/11895309/twitter-bootstrap-rails-center-content-and-fix-min-width
+
+http://stackoverflow.com/questions/31016162/bootstrap-search-box-similar-to-google-developers
+
+<div class='container'>
+<span class="blue_letter">D</span>
+<span class="red_letter">o</span>
+<span class="yellow_letter">o</span>
+<span class="blue_letter">g</span>
+<span class="green_letter">l</span>
+<span class="red_letter">e</span>
+</div>
+
+#red_letter {
+  color: #db3236;
+  font-size: 4em;
+  font-family: 'Tangerine', serif;
+}
+#blue_letter {
+  color: #4885ed;
+  font-size: 4em;
+  font-family: 'Tangerine', serif;
+}
+#green_letter {
+  color: #3cba54;
+  font-size: 4em;
+  font-family: 'Tangerine', serif;
+}
+#yellow_letter {
+  color: #f4c20d;
+  font-size: 4em;
+  font-family: 'Tangerine', serif;
+}
+
 
 Things you may want to cover:
 

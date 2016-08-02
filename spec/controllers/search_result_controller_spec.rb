@@ -6,7 +6,7 @@ RSpec.describe SearchResultController, type: :controller do
     let(:random_str) { (0...8).map { (65 + rand(26)).chr }.join }
 
     it "has a 200 status code", network: true do
-      post :create, xhr: true, params: {search_result: {user_input: random_str}}
+      xhr :post, :create, xhr: true, params: {search_result: {user_input: random_str}}
       expect(response.code).to eq("200")
     end
   end
@@ -30,35 +30,35 @@ RSpec.describe SearchResultController, type: :controller do
       end
     end
 
-    let!(:old_word) { post :create, params: {search_result: {user_input: "duplicate"}} }
+    let!(:old_word) { xhr :post, :create, params: {search_result: {user_input: "duplicate"}} }
 
     it "accepts good input", network: true do
       expect {
-        post :create, params: {search_result: {user_input: random_str}}
+        xhr :post, :create, params: {search_result: {user_input: random_str}}
       }.to change { SearchResult.count }
     end
 
     it "rejects bad input" do
       expect {
-        post :create, params: {search_result: {user_input: "bad input"}}
+        xhr :post, :create, params: {search_result: {user_input: "bad input"}}
       }.to_not change { SearchResult.count }
 
       expect {
-        post :create, params: {search_result: {user_input: "*input"}}
+        xhr :post, :create, params: {search_result: {user_input: "*input"}}
       }.to_not change { SearchResult.count }
 
       expect {
-        post :create, params: {search_result: {user_input: ""}}
+        xhr :post, :create, params: {search_result: {user_input: ""}}
       }.to_not change { SearchResult.count }
 
       expect {
-        post :create, params: {search_result: {user_input: nil}}
+        xhr :post, :create, params: {search_result: {user_input: nil}}
       }.to_not change { SearchResult.count }
     end
 
     it "rejects duplicate input" do
       expect {
-        post :create, params: {search_result: {user_input: "duplicate"}}
+        xhr :post, :create, params: {search_result: {user_input: "duplicate"}}
       }.to_not change { SearchResult.count }
     end
 
@@ -80,14 +80,14 @@ RSpec.describe SearchResultController, type: :controller do
 
       it 'creates the new definitions from the API call' do
         expect {
-          post :create, params: {search_result: {user_input: random_noun}}
+          xhr :post, :create, params: {search_result: {user_input: random_noun}}
         }.to change { Definition.count }
       end
     end
 
     context 'when the word already exists' do
       it "pulls old data from the database" do
-        expect { post :create, params: {search_result: {user_input: old_word}} }.to_not change { Definition.count }
+        expect { xhr :post, :create, params: {search_result: {user_input: old_word}} }.to_not change { Definition.count }
       end
     end
   end

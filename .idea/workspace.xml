@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbbc5426-6071-489c-9c24-3f984d76092c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/doogle_jb2.iml" afterPath="$PROJECT_DIR$/.idea/doogle_jb2.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/search_result_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/search_result_controller_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="doogle_jb2.iws" />
     <ignored path=".idea/workspace.xml" />

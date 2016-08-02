@@ -42,15 +42,6 @@ describe 'searching_ui', :js => true, :type => :feature do
       sleep(2)
 
     end
-    # let(:random_str) { (0...8).map { (65 + rand(26)).chr }.join }
-    # let(:random_noun) do
-    #   arr = ['test', 'sky', 'income', 'support', 'scale', 'orange', 'base', 'writing', 'ship', 'pail', 'bead', 'rest', 'zinc', 'shade', 'arm', 'branch',
-    #          'metal', 'brick', 'basin', 'wrist', 'key', 'pocket', 'trains', 'rain', 'spade', 'hands', 'group', 'substance', 'structure', 'trucks', 'thread',
-    #          'book', 'seashore', 'boat', 'zipper', 'baseball', 'top', 'cloth', 'actor', 'trouble', 'watch', 'night', 'volcano', 'class', 'number', 'tray',
-    #          'representative', 'milk', 'goat', 'egg', 'dinosaur', 'elbow', 'scissors', 'feet', 'farm', 'strawberry', 'computer', 'student', 'paper', 'think',
-    #          'finger', 'hand', 'juice', 'horse', 'ring', 'table', 'couch', 'kick', 'raft', 'organ', 'screen', 'button', 'water', 'bottle', 'phone', 'pants']
-    #   arr.sample
-    # end
 
     context 'user enters input with new word', format: :js do
 
@@ -90,6 +81,31 @@ describe 'searching_ui', :js => true, :type => :feature do
 
         expect {
           page.find_button("Search")
+          click_button "Search"
+          sleep(2)
+        }.to_not change { SearchResult.count }
+      end
+    end
+
+    context 'user enters invalid input' do
+      it 'displays error message' do
+        Capybara.ignore_hidden_elements = true
+        visit root_path
+        element = page.find_field("user_input")
+        element.set("this doesn't work")
+        page.find_button("Search")
+        click_button "Search"
+        sleep(2)
+        expect(page).to have_content('No definitions were found.')
+      end
+
+      it 'does not create a database entry' do
+        Capybara.ignore_hidden_elements = true
+        visit root_path
+        element = page.find_field("user_input")
+        element.set("this doesn't work either")
+        page.find_button("Search")
+        expect {
           click_button "Search"
           sleep(2)
         }.to_not change { SearchResult.count }

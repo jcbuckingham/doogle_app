@@ -14,14 +14,7 @@ RSpec.describe SearchResultController, type: :controller do
   describe 'fetch data' do
     let(:random_str) { (0...8).map { (65 + rand(26)).chr }.join }
 
-    let(:random_noun) do
-      arr = ['test', 'sky', 'income', 'support', 'scale', 'orange', 'base', 'writing', 'ship', 'pail', 'bead', 'rest', 'zinc', 'shade', 'arm', 'branch',
-             'metal', 'brick', 'basin', 'wrist', 'key', 'pocket', 'trains', 'rain', 'spade', 'hands', 'group', 'substance', 'structure', 'trucks', 'thread',
-             'book', 'seashore', 'boat', 'zipper', 'baseball', 'top', 'cloth', 'actor', 'trouble', 'watch', 'night', 'volcano', 'class', 'number', 'tray',
-             'representative', 'milk', 'goat', 'egg', 'dinosaur', 'elbow', 'scissors', 'feet', 'farm', 'strawberry', 'computer', 'student', 'paper', 'think',
-             'finger', 'hand', 'juice', 'horse', 'ring', 'table', 'couch', 'kick', 'raft', 'organ', 'screen', 'button', 'water', 'bottle', 'phone', 'pants']
-      arr.sample
-    end
+    let(:random_noun) { "zipper" }
 
     before do
       temp = SearchResult.find_by(user_input: random_noun)

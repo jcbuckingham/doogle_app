@@ -1,7 +1,11 @@
 <% if params[:search_result] %>
-    <ul id='ul-defs'>
-      <%= @definition_list.each do |definition| %>
-          <li><%= definition.content %></li>
-      <% end %>
-    </ul>
+    <% unless @definition_list == nil || @definition_list.size == 0 %>
+      <ul id='ul-defs'>
+          <%= @definition_list.each do |definition| %>
+              <li><%= definition.content %></li>
+          <% end %>
+      </ul>
+    <% else %>
+      <h4 style="color:red;">No definitions were found. Check your spelling and try again!</h4>
+    <% end %>
 <% end %>

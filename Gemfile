@@ -10,6 +10,10 @@ gem 'activesupport', '5.0.0'
 gem 'rails-controller-testing'
 gem 'awesome_print'
 gem 'bootstrap-sass', '~> 3.3.5.1'
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
+gem 'globalid', '0.3.7'
+gem 'devise'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

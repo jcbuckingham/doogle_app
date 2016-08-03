@@ -1,7 +1,6 @@
 require 'open-uri'
 
 class SearchResultController < ApplicationController
-
   def new
     @result = SearchResult.new
     @definition_list = []
@@ -11,9 +10,7 @@ class SearchResultController < ApplicationController
   end
 
   def show
-
   end
-
 
   def create
 

@@ -14,7 +14,7 @@ gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 gem 'globalid', '0.3.7'
 gem 'devise'
-
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -28,7 +28,6 @@ gem 'turbolinks', '~> 5.x'
 gem 'jbuilder', '~> 2.5'
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 

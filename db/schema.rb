@@ -22,10 +22,9 @@ ActiveRecord::Schema.define(version: 20160803174949) do
 
   create_table "search_results", force: :cascade do |t|
     t.string   "user_input"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "definitions"
-    t.index ["user_input"], name: "index_search_results_on_user_input"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_input"], name: "index_search_results_on_user_input", unique: true
   end
 
 end

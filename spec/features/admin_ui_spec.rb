@@ -12,5 +12,15 @@ RSpec.describe SearchResultController, :js => true, type: :feature do
       expect(page).to have_content("Site Administration")
       expect(current_path).to eq(rails_admin_path)
     end
+
+    it 'gets admin/definition path' do
+      visit 'admin/definition'
+      expect(page).to have_content("List of Definitions")
+    end
+
+    it 'gets admin/search_result path' do
+      visit 'admin/search_result'
+      expect(page).to have_content("List of Search results")
+    end
   end
 end

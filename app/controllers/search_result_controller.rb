@@ -13,7 +13,6 @@ class SearchResultController < ApplicationController
   end
 
   def create
-
     params_result = SearchResult.new(search_params)
     return unless clean_result(params_result.user_input)
 

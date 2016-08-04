@@ -24,6 +24,6 @@ production:
   adapter: postgresql
   pool: 5
   timeout: 5000
-  database: db/my_production
+  database: db/my_prod_db
   username:
   password:

@@ -1,6 +1,14 @@
 require 'rspec/rails'
+require 'webmock/rspec'
 
 RSpec.describe SearchResultController, type: :controller do
+  WebMock.disable_net_connect!(allow_localhost: true)
+  before do
+    stub_request(:get, /www.dictionaryapi.com/).
+      with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, body: "<dt>usually having a shaped crown and brim</dt>", headers: {})
+  end
+
 
   describe 'ajax' do
     let(:random_str) { (0...8).map { (65 + rand(26)).chr }.join }
@@ -57,23 +65,22 @@ RSpec.describe SearchResultController, type: :controller do
 
     context 'when the user input is a new word', network: false do
       let(:api_endpoint) { "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/hat?key=64f621d1-a5ae-4337-8f71-02924c6ce747" }
-      before do
-        temp = SearchResult.find_by(user_input: random_noun)
-        if temp
-          SearchResult.destroy(temp.id)
-        end
-      end
 
       it 'calls the dictionary API' do
         api_response = Nokogiri::HTML(open(api_endpoint))
         expect(api_response).to be_an_instance_of(Nokogiri::HTML::Document)
         expect(response.code).to eq("200")
-        expect(api_response.inspect.scan("opposing").size).to eq(1)
+        expect(api_response.inspect.scan("usually having a shaped crown and brim").size).to eq(1)
       end
 
       it 'creates the new definitions from the API call' do
+        temp = SearchResult.find_by(user_input: "hat")
+        if temp
+          SearchResult.destroy(temp.id)
+        end
+
         expect {
-          xhr :post, :create, params: {search_result: {user_input: random_noun}}
+          xhr :post, :create, params: {search_result: {user_input: "hat"}}
         }.to change { Definition.count }
       end
     end

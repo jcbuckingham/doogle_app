@@ -20,7 +20,6 @@ describe 'searching_ui', :js => true, :type => :feature do
     let!(:test_word) {"test"}
     let!(:brand_new_word) {'rabbit'}
     let!(:another_word) {'another'}
-    let(:elephant) {'elephant'}
     before do
       Capybara.ignore_hidden_elements = false
       visit root_path
@@ -39,7 +38,7 @@ describe 'searching_ui', :js => true, :type => :feature do
         SearchResult.destroy(temp.id)
       end
 
-      sleep(2)
+      sleep(2.5)
 
     end
 
@@ -67,7 +66,7 @@ describe 'searching_ui', :js => true, :type => :feature do
         expect {
           page.find_button("Search")
           click_button "Search"
-          sleep(2)
+          sleep(2.5)
         }.to change { SearchResult.count }.by(1)
       end
     end
@@ -82,7 +81,7 @@ describe 'searching_ui', :js => true, :type => :feature do
         expect {
           page.find_button("Search")
           click_button "Search"
-          sleep(2)
+          sleep(2.5)
         }.to_not change { SearchResult.count }
       end
     end
@@ -95,7 +94,7 @@ describe 'searching_ui', :js => true, :type => :feature do
         element.set("this doesn't work")
         page.find_button("Search")
         click_button "Search"
-        sleep(2)
+        sleep(2.5)
         expect(page).to have_content('No definitions were found.')
       end
 
@@ -107,7 +106,7 @@ describe 'searching_ui', :js => true, :type => :feature do
         page.find_button("Search")
         expect {
           click_button "Search"
-          sleep(2)
+          sleep(2.5)
         }.to_not change { SearchResult.count }
       end
     end
@@ -116,10 +115,10 @@ describe 'searching_ui', :js => true, :type => :feature do
       Capybara.ignore_hidden_elements = false
       visit root_path
       element = page.find_field("user_input")
-      element.set(elephant)
+      element.set("elephant")
       page.find_button("Search")
       click_button "Search"
-      sleep(2)
+      sleep(2.5)
       expect(find('ul')).to have_selector('li', count: 15)
     end
 
@@ -130,7 +129,7 @@ describe 'searching_ui', :js => true, :type => :feature do
       element.set(test_word)
       page.find_button("Search")
       click_button "Search"
-      sleep(2)
+      sleep(2.5)
       list = find('ul').all('li')
       list.each do |li|
         expect(li.text).to_not match('<')
@@ -139,17 +138,17 @@ describe 'searching_ui', :js => true, :type => :feature do
     end
 
     it 'does not display extra data below result list items' do
-      temp = SearchResult.find_by(user_input: elephant)
+      temp = SearchResult.find_by(user_input: "umbrella")
       if temp
         SearchResult.destroy(temp.id)
       end
       Capybara.ignore_hidden_elements = true
       visit root_path
       element = page.find_field("user_input")
-      element.set(elephant)
+      element.set("umbrella")
       page.find_button("Search")
       click_button "Search"
-      sleep(2)
+      sleep(2.5)
       expect(page).to have_no_content('Definition id')
     end
   end
